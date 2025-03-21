@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %} 
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ message | safe }}
+            <a href="/" class="btn-close" aria-label="Close"></a>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="text-center mt-5 mb-5">
+    <div class="text-center mt-5 mb-5">
+        <h1>FOTOFLEX - EDIT YOUR IMAGES EASILY</h1>
+        <h3>Home</h3>
+    </div>
+</div>
+
+<form action="/edit" method="post" enctype="multipart/form-data">
+    <div class="text-center mb-3">
+        <label for="formFile" class="form-label">Select an Image to start Editing</label>
+        <input class="form-control w-50 mx-auto" type="file" name="file" id="formFile">
+    </div>
+
+    <!-- Centering Select Field -->
+    <div class="mb-3 text-center">
+        <div class="form-floating w-50 mx-auto">
+            <select name="operation" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <option selected>Choose an Operation</option>
+                <option value="cpng">Convert to PNG</option>
+                <option value="cjpeg">Convert to Jpeg</option>
+                <option value="cwebp">Convert to Webp</option>
+                <option value="cjpg">Convert to Jpg</option>
+            </select>
+            <label for="floatingSelect">Select an Editing Operation</label>
+        </div>
+    </div>
+
+    <!-- Centering Button -->
+    <div class="text-center">
+        <button type="submit" class="btn btn-success mb-4">Submit</button>
+    </div>
+</form>
+
+{% endblock %}  
+
+
+
+
+
+
+
+
+
